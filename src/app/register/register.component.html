@@ -1,0 +1,26 @@
+<div class="container">
+    <h2>Register</h2>
+    <h3>Welcome to Locker</h3>
+    <form class="form-group">
+        <label for="name">name</label>
+        <input class="form-control x" type="text" placeholder="name" name="name" [(ngModel)]="user.name"
+            required>
+        <label for="password">Password</label>
+        <input class="form-control x" type="password" placeholder="Password" name="password"[(ngModel)]="user.password"
+            required>
+        <br>
+        <label>Address</label>
+        <div>
+          <label for="city">City</label>
+            <input type="text" name="city" class="x" [(ngModel)]="address.city">
+            <label for="street">Street</label>
+         <input type="text" name="street" class="x" [(ngModel)]="address.street">
+            <label for="pincode">pincode</label>
+            <input type="number" name="pincode" class="x" [(ngModel)]="address.pincode"> 
+        </div>
+        <button
+            class="btn btn-primary" (click)="register(user, address)">Register</button>
+    </form>
+    <p> {{ user | json }} </p>
+    <p> {{ address | json }} </p>
+</div> 

@@ -1,0 +1,25 @@
+<div class="container">
+    <h2>Login</h2>
+    <h3>Welcome to Locker</h3>
+    <form class="form-group" #myForm="ngForm" (ngSubmit)="submit(myForm)">
+        <label for="username">Username</label>
+        <input class="form-control x" type="text" placeholder="Username" name="username" ngModel
+            required>
+        <label for="password">Password</label>
+        <input class="form-control x" type="password" placeholder="Password" name="password" ngModel
+            required>
+        <br>
+        <label>Address</label>
+        <div ngModelGroup="address">
+            <label for="city">City</label>
+            <input type="text" name="city" class="x" ngModel>
+            <label for="street">Street</label>
+            <input type="text" name="street" class="x" ngModel>
+            <label for="pincode">pincode</label>
+            <input type="text" name="pincode" class="x" ngModel>
+        </div>
+        <button
+            class="btn btn-primary">Login</button>
+    </form>
+    <p> {{ myForm.value | json }} </p>
+</div> 

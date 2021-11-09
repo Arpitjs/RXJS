@@ -1,0 +1,19 @@
+<div class="container">
+    <!-- subject stuff -->
+    <app-test2></app-test2>
+    <p>enter message</p>
+    <input type="text" #msg style="display: block; margin-bottom: 20px;">
+    <button (click)="sendMsg(msg)">send message</button>
+    <p>{{notif}}</p>
+
+    <!-- api stuff -->
+    <!-- dummy json -->
+    <div *ngFor="let user of users"> 
+        {{ user.name }}
+    <!-- from BE -->
+    </div>
+       <div style="margin-top: 20px;">
+        <button (click)="getUser()">get data</button>
+        <p *ngIf="data"> {{data.name}} </p>
+       </div>
+</div>
