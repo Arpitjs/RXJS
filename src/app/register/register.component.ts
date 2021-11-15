@@ -23,7 +23,6 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
   register(user: User, address: Address) {
-    let data = {...user, address}
-    console.log('data', data)
+    console.log('user data', {...user, address})
   }
  }

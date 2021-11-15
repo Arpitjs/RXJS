@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AppService } from '../app.service';
 import { User } from '../User';
-import { Subject, Observable, BehaviorSubject } from 'rxjs'
+import { Subject, Observable, BehaviorSubject, fromEvent } from 'rxjs'
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators'
 import { NotificationService } from '../notification.service';
 
 @Component({
@@ -9,10 +10,15 @@ import { NotificationService } from '../notification.service';
   templateUrl: './test1.component.html',
   styleUrls: ['./test1.component.css']
 })
-export class Test1Component implements OnInit {
+export class Test1Component implements OnInit, AfterViewInit {
   users: User[] = []
   data: any
   notif: any
+  reqData: any
+  reqData2: any
+  comments: any
+  @ViewChild('myInput') myInput: ElementRef | undefined
+  @ViewChild('myInput2') myInput2: ElementRef | undefined
   constructor(
     private appService: AppService,
     private notifService: NotificationService
@@ -50,6 +56,30 @@ export class Test1Component implements OnInit {
       this.notifService.notifSubject.subscribe(data => this.notif = data)
   }
 
+  ngAfterViewInit() {
+    //debounce time
+    const searchTerm = fromEvent<any>(this.myInput?.nativeElement, 'keyup')
+    searchTerm.pipe(
+      map(event => event.target.value),
+      debounceTime(1000)
+    ).subscribe(res => {
+      this.reqData = res
+      console.log(this.reqData)
+      setTimeout(() => this.reqData = null, 2000)
+    })
+    // distinct until changed
+    // will not send duplicate request
+    const searchTerm2 = fromEvent<any>(this.myInput2?.nativeElement, 'keyup')
+    searchTerm2.pipe(
+      map(event => event.target.value),
+      debounceTime(1000),
+      distinctUntilChanged()
+    ).subscribe(res => {
+      this.reqData2 = res
+      console.log(this.reqData2)
+      setTimeout(() => this.reqData2 = null, 2000)
+    })
+  }
   getUser() {
     this.appService.getBEUser()
       .subscribe((res: any) => this.data = res,

@@ -10,10 +10,26 @@
     <!-- dummy json -->
     <div *ngFor="let user of users"> 
         {{ user.name }}
-    <!-- from BE -->
+    <!-- from BE for interceptor token validation-->
     </div>
        <div style="margin-top: 20px;">
         <button (click)="getUser()">get data</button>
         <p *ngIf="data"> {{data.name}} </p>
        </div>
+
+       <p>debounce time</p>
+       <label>search</label>
+       <input type="text" #myInput style="display: block; margin-bottom: 20px;"
+       placeholder="search">
+       <span *ngIf="reqData">Requested Data: <strong 
+        style="font-weight: bold; color: green">{{reqData}}</strong>
+    </span>
+
+    <p>distinct until changed time</p>
+    <label>search</label>
+    <input type="text" #myInput2 style="display: block; margin-bottom: 20px;"
+    placeholder="search">
+    <span *ngIf="reqData2">Requested Data: <strong 
+     style="font-weight: bold; color:red">{{reqData2}}</strong>
+ </span>
 </div>
