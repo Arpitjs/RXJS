@@ -1,0 +1,9 @@
+<div>
+    <p>BOOKS API</p>
+    <label>search</label>
+    <input type="text" (keyup)="typeBooks($event)" style="display: block; margin-bottom: 20px;">
+    <tr>Books</tr>
+    <div *ngFor="let b of books">
+        <td>{{b}}</td>
+    </div>
+</div>

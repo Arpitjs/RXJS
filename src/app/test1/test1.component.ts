@@ -16,15 +16,12 @@ export class Test1Component implements OnInit, AfterViewInit {
   notif: any
   reqData: any
   reqData2: any
-  comments: any
   @ViewChild('myInput') myInput: ElementRef | undefined
   @ViewChild('myInput2') myInput2: ElementRef | undefined
   constructor(
     private appService: AppService,
     private notifService: NotificationService
-
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     // this.appService.getUsers()

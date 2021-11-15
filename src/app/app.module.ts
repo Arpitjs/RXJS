@@ -11,6 +11,7 @@ import { Test2Component } from './test2/test2.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { RegisterComponent } from './register/register.component';
+import { BooksComponent } from './books/books.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { RegisterComponent } from './register/register.component';
     Test1Component,
     Test2Component,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    BooksComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +30,8 @@ import { RegisterComponent } from './register/register.component';
   ],
   providers: [AppService, 
     NotificationService,
-    { provide:  HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true } ],
+    // { provide:  HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

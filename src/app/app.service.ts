@@ -26,4 +26,12 @@ export class AppService {
     getBEUser(): Observable<{}> {
         return this.http.get('http://localhost:8000/api/data')
     }
+    getBooks(value: any): Observable<any[]> {
+        return this.http.get(`https://www.googleapis.com/books/v1/volumes?q=${value}`)
+        .pipe(
+            map((books: any) => {
+               return books.items.map((book: any) => book.volumeInfo.title)
+            })
+        )
+    }
 }
